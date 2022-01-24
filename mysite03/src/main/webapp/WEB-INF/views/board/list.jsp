@@ -28,16 +28,16 @@
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>				
-				<c:set var = "count" value = "${fn:length(list)}"/>
+				<c:set var = "count" value = "${fn:length(map.list)}"/>
 				
-				<c:forEach items="${list}" var = "vo" varStatus = "status">
+				<c:forEach items="${map.list}" var = "vo" varStatus = "status">
 						<tr class = 'tble'>
 							<c:choose>
-								<c:when test="${pcnt == p}">
+								<c:when test="${map.pcnt == map.p}">
 									<td>[${count- status.index }]</td>
 								</c:when>
 								<c:otherwise>
-									<td>[${count- status.index +  (cnt % 5) + 5 * (pcnt - p - 1)}]</td>
+									<td>[${count- status.index +  (map.cnt % 5) + 5 * (map.pcnt - map.p - 1)}]</td>
 								</c:otherwise>
 							</c:choose>
 							<c:choose>
@@ -49,7 +49,7 @@
 										<c:if test='${vo.depth != 1}'>
 											<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png" />
 										</c:if>
-										<a href="${pageContext.request.contextPath}/board?a=view&no=${vo.no}">${vo.title}</a>
+										<a href="${pageContext.request.contextPath}/board/view?no=${vo.no}">${vo.title}</a>
 									</td>
 								</c:otherwise> 
 								</c:choose>
@@ -57,7 +57,7 @@
 							<td>${vo.hit}</td>
 							<td>${vo.regDate}</td>
 							<c:if test= '${authUser.no ==  vo.userNo && vo.status != "deleted"}'>
-								<td><a href="${pageContext.request.contextPath}/board?a=delete&no=${vo.no}"  class="del" style='background-image: url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a></td>
+								<td><a href="${pageContext.request.contextPath}/board/delete?no=${vo.no}"  class="del" style='background-image: url("${pageContext.servletContext.contextPath }/assets/images/recycle.png")'>삭제</a></td>
 							</c:if >
 						</tr>
 				</c:forEach>
@@ -66,19 +66,19 @@
 				<div class="pager">
 					<ul>
 					<c:choose>
-						<c:when test = "${empty kwd}">
-							<li <c:if test ="${p == 1}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${p - 1}">◀</a></li>
-							<c:forEach begin = "1" end = "${pcnt}" step = "1" var = "r">
-							<li <c:if test ="${p == r}">class="selected"</c:if> ><a href="${pageContext.request.contextPath}/board?p=${r}">${r}</a></li>
+						<c:when test = "${empty map.kwd}">
+							<li <c:if test ="${map.p == 1}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${map.p - 1}">◀</a></li>
+							<c:forEach begin = "1" end = "${map.pcnt}" step = "1" var = "r">
+								<li <c:if test ="${map.p == r}">class="selected"</c:if> ><a href="${pageContext.request.contextPath}/board?p=${r}">${r}</a></li>
 							</c:forEach>
-							<li <c:if test ="${p == pcnt}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${p + 1}">▶</a></li>													
+							<li <c:if test ="${map.p == map.pcnt}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${map.p + 1}">▶</a></li>													
 						</c:when>
 						<c:otherwise>
-							<li <c:if test ="${p == 1}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${p - 1}&kwd=${kwd}">◀</a></li>
-							<c:forEach begin = "1" end = "${pcnt}" step = "1" var = "r">
-							<li <c:if test ="${p == r}">class="selected"</c:if> ><a href="${pageContext.request.contextPath}/board?p=${r}&kwd=${kwd}">${r}</a></li>
+							<li <c:if test ="${map.p == 1}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${map.p - 1}&kwd=${map.kwd}">◀</a></li>
+							<c:forEach begin = "1" end = "${map.pcnt}" step = "1" var = "r">
+								<li <c:if test ="${map.p == r}">class="selected"</c:if> ><a href="${pageContext.request.contextPath}/board?p=${r}&kwd=${map.kwd}">${r}</a></li>
 							</c:forEach>
-							<li <c:if test ="${p == pcnt}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${p + 1}&kwd=${kwd}">▶</a></li>						
+							<li <c:if test ="${map.p == map.pcnt}">class="disabled"</c:if>><a href="${pageContext.request.contextPath}/board?p=${map.p + 1}&kwd=${map.kwd}">▶</a></li>						
 						</c:otherwise>
 					</c:choose>
 						
@@ -86,7 +86,9 @@
 				</div>
 				<!-- pager 추가 -->
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath}/board?a=writeform&no=${vo.no}" id="new-book">글쓰기</a>
+					<c:if test="${!empty authUser}">
+						<a href="${pageContext.request.contextPath}/board/write" id="new-book">글쓰기</a>
+					</c:if>
 				</div>				
 			</div>
 		</div>
