@@ -35,13 +35,12 @@ public class BoardService {
 	public boolean addReply(BoardVo vo, Long myno, Long pno){
 
 		BoardVo pvo =  boardRepository.findByNo(pno);
-		System.out.println(pno);
 		
 		boardRepository.updateboard(pvo.getReplyCnt() + pvo.getOrderNo(), pvo.getGroupNo());
 		//insert(String title, String contents, Long no, int g_no, int o_no, int depth) 
 		
 		if(pvo.getDepth()+1 >= 3) {
-			System.out.println("dfdf" );
+	
 			for(int i = 2; i < pvo.getDepth() + 1; i++) {
 				boardRepository.increasereplycnt1(pvo.getDepth() + 1 -i, pvo.getGroupNo());
 			}
@@ -57,15 +56,14 @@ public class BoardService {
 	
 	//veiw
 	public BoardVo getContents(Long no){
-		
-	
+
 		return boardRepository.view(no);
 	}
 	
-	//글 수정하기전
-	public BoardVo getContents(Long no, Long userNo) {
-		return boardRepository.view(no);
-	}
+//	//글 수정하기전
+//	public BoardVo getContents(Long no, Long userNo) {
+//		return boardRepository.view(no, userNo);
+//	}
 	
 	//글 수정
 	public Boolean updateContents(BoardVo vo) {		
@@ -73,10 +71,8 @@ public class BoardService {
 	}
 	
 	//글 삭
-	public Boolean deleteContents(Long no, Long userNo) {
-		BoardVo vo = new BoardVo();
-		vo.setNo(no);
-		return boardRepository.delete(vo);
+	public boolean deleteContents(Long no) {
+		return boardRepository.delete(no);
 	}
 	
 	//글 리스트(찾기결과)
@@ -101,7 +97,7 @@ public class BoardService {
 		}else {
 
 			list =  boardRepository.findAll((cPage - 1) * LIST_SIZE ,kwd);
-			cnt = boardRepository.count(kwd);	//총개수
+			cnt = boardRepository.getTotalCount(kwd);	//총개수
 			
 		}
 		

@@ -49,6 +49,10 @@ public class BoardController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("authUser", authUser);	
 		model.addAttribute("no", no);
+		
+		System.out.println(vo.getUserNo());
+		System.out.println(authUser.getNo());
+		
 		return "board/view";
 	}
 	
@@ -120,9 +124,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
-	public String modify(Model model, BoardVo vo) {
+	public String modify(Model model, BoardVo vo, Long no) {
+		vo.setNo(no);
 		boardService.updateContents(vo);
-		
+		System.out.println("2" + vo);
 		return "redirect:/board";
 	}
 	
@@ -137,7 +142,7 @@ public class BoardController {
 			return "redirect:/board";
 		}
 		
-		boardService.deleteContents(no, authUser.getNo());
+		boardService.deleteContents(no);
 		return "redirect:/board";
 	}
 	

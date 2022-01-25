@@ -28,8 +28,9 @@ public class GuestbookController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(GuestbookVo vo) {
-		System.out.println(vo);
+		System.out.println("guestbookvo : "+ vo);
 		guestbookService.addMessage(vo);
+		System.out.println("guestbookvo : "+ vo);
 		return "redirect:/guestbook";  //emaillist03안적음 기술이니까
 	}
 	

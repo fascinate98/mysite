@@ -20,12 +20,12 @@ public class GuestbookService {
 		return guestbookRepository.findAll();
 	}
 	
-	public Boolean deleteMessage(GuestbookVo vo) {
+	public int deleteMessage(GuestbookVo vo) {
 		
 		return guestbookRepository.delete(vo);
 	}
 	
-	public Boolean addMessage(GuestbookVo vo) {
+	public int addMessage(GuestbookVo vo) {
 
 		return guestbookRepository.insert(vo);
 	}

@@ -27,6 +27,6 @@ public class UserService {
 
 	public void updateUser(UserVo userVo) {
 		
-		userRepository.update(userVo.getNo(), userVo.getName(), userVo.getPassword(), userVo.getGender());
+		userRepository.update(userVo);
 	}
 }
