@@ -9,6 +9,7 @@
 		select name, email, gender from user where no = #{no}
 	]]>
 	</select>
+
 	
 	
 	<select id="findByEmailAndPassword" parameterType = "map" resultType="uservo">
@@ -27,18 +28,19 @@
 	
 	
 	<update id="update" parameterType = "uservo">
-	<choose>
-		<when test = "password == null || '' == password">
-			<![CDATA[
-				update user set name = #{name} , gender = #{gender} where no= #{no}
-			]]>
-		</when>
-		<otherwise>
-			<![CDATA[
-				update user set name = #{name} , password = #{password}, gender = #{gender} where no= #{no}
-			]]>
-		</otherwise>
-	</choose>
-	</update>
+		<choose>
+			<when test = "password == null || '' == password">
+				<![CDATA[
+					update user set name = #{name} , gender = #{gender} where no= #{no}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					update user set name = #{name} , password = #{password}, gender = #{gender} where no= #{no}
+				]]>
+			</otherwise>
+		</choose>
+	</update>	
+	
 	
 </mapper>

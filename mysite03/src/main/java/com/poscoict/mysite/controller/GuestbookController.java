@@ -20,7 +20,7 @@ public class GuestbookController {
 
 	@RequestMapping("")
 	public String index(Model model) {
-		List<GuestbookVo> list = guestbookService.getMessgaeList();
+		List<GuestbookVo> list =  guestbookService.getMessgaeList();
 		model.addAttribute("list", list);	
 		return "guestbook/index";
 	}

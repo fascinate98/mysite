@@ -1,9 +1,7 @@
 package com.poscoict.mysite.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.poscoict.mysite.security.Auth;
+import com.poscoict.mysite.security.AuthUser;
 import com.poscoict.mysite.service.BoardService;
 import com.poscoict.mysite.vo.BoardVo;
 import com.poscoict.mysite.vo.UserVo;
@@ -23,13 +23,12 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
+	@Auth
 	@RequestMapping("")
-	public String index(HttpSession session, 
+	public String index(@AuthUser UserVo authUser,
 			@RequestParam(value="p", defaultValue="1")Integer p, 
 			@RequestParam(value="kwd", required = false, defaultValue = "") String kwd, 
 			Model model) {
-		
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
 		Map<String, Object> map = boardService.getContentsList(p, kwd);
 		model.addAttribute("map", map);	
@@ -37,13 +36,11 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	
-	
+	@Auth
 	@RequestMapping(value="/view")
-	public String view(HttpSession session, Long no, Model model) {
+	public String view(@AuthUser UserVo authUser,  Long no, Model model) {
 		
 		System.out.println(no);
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		
 		BoardVo vo =  boardService.getContents(no);
 		model.addAttribute("vo", vo);
@@ -56,14 +53,12 @@ public class BoardController {
 		return "board/view";
 	}
 	
+	
+	
+	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String write(HttpSession session, Model model) {
+	public String write( Model model) {
 		
-		/* access controller */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/board";
-		}
 		model.addAttribute("a", "write");
 		
 		return "board/write";
@@ -72,10 +67,9 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/reply", method=RequestMethod.GET)
-	public String reply(HttpSession session, Model model, Long no) {
+	public String reply(@AuthUser UserVo authUser, Model model, Long no) {
 		
 		/* access controller */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/board";
 		}
@@ -85,12 +79,11 @@ public class BoardController {
 		
 		return "board/write";
 	}
-	
+
 	@RequestMapping(value="/write/{a}", method=RequestMethod.POST)
-	public String write(HttpSession session, BoardVo vo, @PathVariable("a") String type, Long no) {
+	public String write(@AuthUser UserVo authUser, BoardVo vo, @PathVariable("a") String type, Long no) {
 		
 		/* access controller */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
 		if(authUser == null) {
 			return "redirect:/board";
 		}
@@ -111,9 +104,9 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/modify")
-	public String modify(HttpSession session, Long no, Model model) {
+	public String modify(@AuthUser UserVo authUser, Long no, Model model) {
 	
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+	
 		
 		BoardVo vo =  boardService.getContents(no);
 		model.addAttribute("vo", vo);
@@ -134,10 +127,10 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String delete(HttpSession session, Long no) {
+	public String delete(@AuthUser UserVo authUser, Long no) {
 		
 		/* access controller */
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
+
 		if(authUser == null) {
 			return "redirect:/board";
 		}
