@@ -10,7 +10,7 @@ import org.springframework.util.StopWatch;
 @Component
 public class MeasureExecutionTimeAspect {
 	
-	@Around("execution(* *..*.repository.*.*(..))")
+	@Around("execution(* *..*.repository.*.*(..)) || execution(* *..*.service.*.*(..)) || execution(* *..*.controller.*.*(..))")
 	public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
 		
 		//before
@@ -27,7 +27,7 @@ public class MeasureExecutionTimeAspect {
 		String className = pjp.getTarget().getClass().getName();
 		String methodName = pjp.getSignature().getName();
 		String taskName = className + methodName;
-		System.out.println("taskName time : " +  taskName);
+		System.out.println("taskName: " +  taskName);
 		
 		return result;
 	}
