@@ -13,9 +13,9 @@
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
 		<!-- Connection Pool DataSource-->
-		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<bean id="dataSource" class="org.mariadb.jdbc.Driver">
 			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-			<property name="url" value="jdbc:mysql://localhost:3306/webdb?characterEncoding=UTF-8&amp;serverTimezone=UTC" />
+			<property name="url" value="jdbc:mysql://192.168.0.42:3307/webdb?characterEncoding=UTF-8&amp;serverTimezone=UTC" />
 			<property name="username" value="webdb" />
 			<property name="password" value="webdb" />
 		</bean>
