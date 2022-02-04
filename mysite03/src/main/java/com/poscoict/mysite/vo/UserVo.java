@@ -1,9 +1,37 @@
 package com.poscoict.mysite.vo;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class UserVo {
 	private Long no;
+	
+	private String role;
+	
+	public String getRole() {
+		return role;
+	}
+
+
+
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	@NotEmpty
+	@Length(min = 2, max =8)
 	private String name;
+	
+	@NotEmpty
+	@Email
+	//@Pattern(regexp="^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$")
 	private String email;
+	
+	@NotEmpty
+	@Length(min = 4, max =16)
 	private String password;
 	private String gender;
 	private String joinDate;
@@ -12,14 +40,6 @@ public class UserVo {
 	}
 	
 	
-	
-	
-	@Override
-	public String toString() {
-		return "UserVo [no=" + no + ", name=" + name + ", email=" + email + ", password=" + password + ", gender="
-				+ gender + ", joinDate=" + joinDate + "]";
-	}
-
 
 
 

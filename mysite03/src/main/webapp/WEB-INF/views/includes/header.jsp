@@ -5,7 +5,7 @@
 
 
 		<div id="header">
-			<h1>MySite</h1>
+			<h1>${siteVo.title }</h1>
 			<ul>
 				<c:choose>
 					<c:when test = '${empty authUser}'>
@@ -15,7 +15,7 @@
 					<c:otherwise>
 						<li><a href="${pageContext.request.contextPath}/user/update">회원정보수정</a><li>
 						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a><li>
-						<li>${authUser.name}님 안녕하세요 ^^;</li>
+						<li>${authUser.name} : ${authUser.role} 님 안녕하세요 ^^;</li>
 					</c:otherwise>
 				</c:choose>
 	

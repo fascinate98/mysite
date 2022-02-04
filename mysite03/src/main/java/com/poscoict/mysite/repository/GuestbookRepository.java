@@ -20,10 +20,6 @@ import com.poscoict.mysite.vo.GuestbookVo;
 public class GuestbookRepository {
 	
 	@Autowired
-	private DataSource datasource;
-	
-	
-	@Autowired
 	private SqlSession sqlSession;
 	
 	public List<GuestbookVo> findAll() {
