@@ -1,4 +1,4 @@
-package com.poscoict.config.app;
+package com.poscoict.config;
 
 import javax.sql.DataSource;
 
@@ -24,10 +24,10 @@ public class DBConfig {
 //		dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
 //		dataSource.setUrl("jdbc:mysql://192.168.0.42:3307/webdb?characterEncoding=UTF-8&serverTimezone=UTC");
 //		dataSource.setUsername("webdb");
-//		dataSource.setPassword("webdb");
-//		
+//		dataSource.setPassword("webdb");	
 //		dataSource.setInitialSize(50);
 //		dataSource.setMaxActive(100);
+		
 		
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
