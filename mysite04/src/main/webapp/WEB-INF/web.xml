@@ -22,6 +22,15 @@
 	</context-param>
   
   
+  
+  	<!-- Context Load Listener -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	
+	
+  
   	<!-- Dispatcher Servlet -->
 	<servlet>
 		<servlet-name>spring</servlet-name>
@@ -44,6 +53,8 @@
 	</servlet-mapping>
   
   
+  
+  
 	<context-param>  
     <param-name>spring.profiles.active</param-name>  
     <param-value>dev</param-value>  
@@ -57,10 +68,7 @@
 	    <param-value>dev</param-value>  
 	</context-param>  
 
-	<!-- Context Load Listener -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+
 
 	<!-- Encoding Filter -->
 	<filter>
