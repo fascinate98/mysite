@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@PropertySource("classpath:com/poscoict/mysite/config/web/error.properties")
+@PropertySource("classpath:com/poscoict/mysite/config/web/fileupload.properties")
 public class MvcConfig extends WebMvcConfigurerAdapter {
 	
 	
@@ -39,12 +39,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 //	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 //		configurer.enable();
 //	}
-	
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		
-		registry.addResourceHandler(env.getProperty("fileupload.resourceMapping")).addResourceLocations("/error/404");
-	}
+//	
+
 	
 	
 }

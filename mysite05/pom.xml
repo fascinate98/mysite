@@ -137,6 +137,7 @@
 					<path>/mysite05</path>
 					<username>admin</username>
 					<password>manager</password>
+					 
 				</configuration>
 			</plugin>	
 		</plugins>		

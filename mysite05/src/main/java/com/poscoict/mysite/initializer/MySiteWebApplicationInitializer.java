@@ -11,35 +11,33 @@ import com.poscoict.mysite.config.WebConfig;
 
 public class MySiteWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-	@Override
-	protected Class<?>[] getRootConfigClasses() {
+   @Override
+   protected Class<?>[] getRootConfigClasses() {
+      return new Class<?>[] {AppConfig.class};
+   }
+   
+   @Override
+   protected Class<?>[] getServletConfigClasses() {
+      return new Class<?>[] {WebConfig.class};
 
-		return new Class<?>[] {AppConfig.class};
-	}
+   }
 
-	@Override
-	protected String[] getServletMappings() {
-		return new String[] {"/"};
-	}
-	
-	@Override
-	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] {WebConfig.class};
-	}
+   @Override
+   protected String[] getServletMappings() {
+      return new String[] {"/"};
+   }
 
-	@Override
-	protected Filter[] getServletFilters() {
-		// TODO Auto-generated method stub
-		return new Filter[] {new CharacterEncodingFilter("utf-8", false)};
-	}
+   @Override
+   protected Filter[] getServletFilters() {
+      return new Filter[] {new CharacterEncodingFilter("utf-8", false)};
+   }
 
-	@Override
-	   protected void customizeRegistration(Dynamic registration) {
-	      registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
-	   }
-	
-	
-	
-	
-	
+   @Override
+   protected void customizeRegistration(Dynamic registration) {
+      registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+   }
+   
+   
+
+   
 }
