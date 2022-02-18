@@ -1,0 +1,142 @@
+@charset "UTF-8";
+
+@import "mysite.css";
+
+#gallery {
+	
+	margin: 20px auto;
+	width: 540px;
+	padding:5px;
+}
+
+
+#gallery-header {
+	position: relative;
+	width: 100%;
+	display: flex;
+	margin : 0px 0px 8px 0px;
+}
+
+#gallery-logo {
+	position: relative;
+	left: 0px;
+	width: 35px;
+}
+
+#gallery-title {
+	position: relative;
+	left: 8px;
+	color: #4F4F4F;
+}
+
+
+
+
+
+
+#gallery-main {
+	position: relative;
+	width:100%;
+	overflow: hidden;
+}
+
+#gallery #gallery-main ul {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+#gallery #gallery-main ul li {
+	position:relative;
+	list-style-type: none;
+	overflow: hidden;
+	border-style: ridge;
+	border: 1px solid #000;
+	opacity: 0.7;
+	transition: .3s ease;
+	margin:5px;
+	float: left;
+}
+
+#gallery #gallery-main ul li:hover {
+	opacity: 1;
+  	transform: scale(1.05);
+  	box-shadow: 0 0 0 2px #d0d0d0;
+}
+
+
+.image {
+	display: flex;
+	position:relative;
+	width:114px; 
+	height:114px;
+	padding : 2px;
+	background-size: 114px;
+	  
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+.del-button {
+	position:absolute;
+	background-image:url('/mysite03/assets/images/delete-imge.png');
+	background-size: cover;
+	width:17px;
+	height:17px;
+	z-index: 1;
+	right:2px;
+	top:3px;
+	display: none;
+}
+
+#gallery ul li:hover a.del-button {
+	display:block;
+
+}
+
+
+
+
+#upload-image {
+	position: absolute;
+	right: 0px;
+	padding: 10px 15px 10px 15px;
+	border: 1px solid #555;
+	font-weight: bold;
+	background-color: #E8ECF6;
+	text-decoration:none;
+	color: #111;
+	background-size: cover;
+}
+
+/* 이미지 업로드 팝업 레이어 */
+#dialog-upload-form {
+	text-align: left;
+}
+
+#dialog-upload-form p {
+	padding: 20px 0 5px 0;
+	font-weight: bold;
+	font-size: 1.1em
+}
+
+#dialog-upload-form label, #dialog-upload-form input {
+	display: block;
+}
+
+#dialog-upload-form label {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+#dialog-upload-form input {
+	outline: none;
+	margin-top: 5px;
+}
+
+#dialog-upload-form input[type='text'] {
+	padding: 5px;
+	border: 2px solid #A9A9A9;
+	width: 260px;
+}
