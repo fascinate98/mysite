@@ -25,7 +25,7 @@ pageContext.setAttribute("newLine", "\n");
 	$(function() {
 		// 업로드 다이알로그
 		var dialogUpload = $("#dialog-upload-form").dialog({
-			autoOpen : false,
+
 			height : 280,
 			width : 300,
 			modal : true,
