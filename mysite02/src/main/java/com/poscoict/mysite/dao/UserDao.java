@@ -164,7 +164,7 @@ public class UserDao {
 	Class.forName("org.mariadb.jdbc.Driver");
 			
 			//2. 연결하기
-			String url = "jdbc:mysql://192.168.0.42:3307/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
+			String url = "jdbc:mysql://192.168.0.73:3307/webdb?characterEncoding=UTF-8&serverTimezone=UTC";
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패:" + e);

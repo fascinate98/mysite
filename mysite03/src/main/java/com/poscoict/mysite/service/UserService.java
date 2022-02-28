@@ -8,25 +8,26 @@ import com.poscoict.mysite.vo.UserVo;
 
 @Service
 public class UserService {
-   @Autowired
-   private UserRepository userRepository;
-   
-   public boolean join(UserVo vo) {
-	   boolean result =  userRepository.insert(vo);
-	   return result;
-   }
+	@Autowired
+	private UserRepository userRepository;
+
+	public void join(UserVo userVo) {
+		userRepository.insert(userVo);
+	}
 
 	public UserVo getUser(String email, String password) {
-		   return userRepository.findByEmailAndPassword(email, password);
+		return userRepository.findByEmailAndPassword(email, password);
 	}
 
 	public UserVo getUser(Long userNo) {
-		
 		return userRepository.findByNo(userNo);
 	}
 
 	public void updateUser(UserVo userVo) {
-		
 		userRepository.update(userVo);
+	}
+
+	public UserVo getUser(String email) {
+		return userRepository.findByEmail(email);
 	}
 }
