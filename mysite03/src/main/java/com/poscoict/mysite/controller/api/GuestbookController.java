@@ -25,21 +25,23 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 
-	@PostMapping("/add")
+	@PostMapping("")
 	public Object add(@RequestBody GuestbookVo vo) {
 
 		boolean result = guestbookService.addMessage(vo);
 		return result ? JsonResult.success(vo) : JsonResult.fail("fail");
 	}
 
-	@GetMapping("/list")
-	public Object read() {
-		List<GuestbookVo> list = guestbookService.getMessgaeList();
-
+	@GetMapping("/{startNo}")
+	public Object read(@PathVariable(value = "startNo",  required= false) Long no) {
+		List<GuestbookVo> list;
+		list = no.equals(Long.valueOf(0))? guestbookService.findByNo(null) : guestbookService.findByNo(no);
+		System.out.println("nsadfasdfo : "+ list);
+		
 		return JsonResult.success(list);
 	}
 	
-	@DeleteMapping("/delete")
+	@DeleteMapping("")
 	public Object delete(@RequestBody GuestbookVo vo) {
 		System.out.println("no : "+ vo.getNo());
 		boolean result = guestbookService.deleteMessage(vo);

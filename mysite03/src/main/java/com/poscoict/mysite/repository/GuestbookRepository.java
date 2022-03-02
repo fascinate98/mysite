@@ -36,5 +36,7 @@ public class GuestbookRepository {
 		return  count==1;
 	}
 	
-
+	public List<GuestbookVo> findByNo(Long no) {
+		return sqlSession.selectList("guestbook.findByNo", no);
+	}
 }

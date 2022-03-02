@@ -31,5 +31,8 @@ public class GuestbookService {
 	}
 	
 	
+	public List<GuestbookVo> findByNo(Long no){
 
+		return guestbookRepository.findByNo(no);
+	}
 }

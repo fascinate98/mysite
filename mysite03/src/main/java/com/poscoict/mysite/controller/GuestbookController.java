@@ -28,9 +28,8 @@ public class GuestbookController {
 	}
 	
 	@RequestMapping("/spa")
-	public String guestbookapi(Model model) {
-		List<GuestbookVo> list =  guestbookService.getMessgaeList();
-		model.addAttribute("list", list);	
+	public String guestbookapi() {
+
 		return "guestbook/index-ajax";
 	}
 	
