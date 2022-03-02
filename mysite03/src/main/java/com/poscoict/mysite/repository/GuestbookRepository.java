@@ -26,13 +26,14 @@ public class GuestbookRepository {
 		return sqlSession.selectList("guestbook.findAll");
 	}
 	
-	public int delete(GuestbookVo vo) {
-		return sqlSession.delete("guestbook.delete", vo);	
+	public boolean delete(GuestbookVo vo) {
+		 int count =sqlSession.delete("guestbook.delete", vo);	
+		return count==1;
 	}
 	
-	public int insert(GuestbookVo vo) {
-		
-		return sqlSession.insert("guestbook.insert", vo);
+	public boolean insert(GuestbookVo vo) {
+		 int count =sqlSession.insert("guestbook.insert", vo);
+		return  count==1;
 	}
 	
 

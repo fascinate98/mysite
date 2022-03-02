@@ -18,11 +18,20 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookService guestbookService;
 
+
+	
 	@RequestMapping("")
 	public String index(Model model) {
 		List<GuestbookVo> list =  guestbookService.getMessgaeList();
 		model.addAttribute("list", list);	
 		return "guestbook/index";
+	}
+	
+	@RequestMapping("/spa")
+	public String guestbookapi(Model model) {
+		List<GuestbookVo> list =  guestbookService.getMessgaeList();
+		model.addAttribute("list", list);	
+		return "guestbook/index-ajax";
 	}
 	
 	
